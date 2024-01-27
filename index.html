@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>IL meteo di Frate Indovino</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="assets/img/logo.svg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="styles/main.css"
+    />
+  </head>
+  <body>
+    <div class="webapp">
+      <ul class="barra-punteggio">
+        <li>Punti: {{punteggio}}</li>
+        <li>Giorno: {{giorno}}</li>
+      </ul>
+      <div class="contenitore-meteo">
+        <h3 v-if="!finitoMese">{{meteoDiOggi}}</h3>
+        <p v-if="finitoMese">Hai finito il mese!</p>
+      </div>
+      <div class="button-container" v-if="!finitoMese">
+        <button id="occhiali" v-on:click="occhiali()">
+          <strong>😎</strong>
+        </button>
+        <button id="maglioncino" v-on:click="maglioncino()">
+          <strong>🧥</strong>
+        </button>
+        <button id="ombrello" v-on:click="ombrello()">
+          <strong>☂️</strong>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: ".webapp",
+        data: {
+          punteggio: 0,
+          giorno: 1,
+          condizioniMetereologiche: ["☀️", "🌧️", "☁️"],
+          meteoDiOggi: "",
+          lunghezzaMese: 3,
+          finitoMese: false,
+        },
+        mounted: function () {
+          this.nuovoMeteo();
+        },
+        methods: {
+          nuovoMeteo: function () {
+            var self = this;
+            if (self.giorno > self.lunghezzaMese) {
+              self.finitoMese = true;
+              self.giorno -= 1;
+            } else {
+              var condizioneOdierna =
+                self.condizioniMetereologiche[
+                  Math.floor(
+                    Math.random() * self.condizioniMetereologiche.length
+                  )
+                ];
+              self.meteoDiOggi = condizioneOdierna;
+              console.log(condizioneOdierna);
+            }
+          },
+
+          occhiali: function () {
+            var self = this;
+            self.controllaOutfit("😎");
+          },
+
+          maglioncino: function () {
+            var self = this;
+            self.controllaOutfit("🧥");
+          },
+
+          ombrello: function () {
+            var self = this;
+            self.controllaOutfit("☂️");
+          },
+
+          controllaOutfit: function (outfit) {
+            var self = this;
+            if (
+              (self.meteoDiOggi == "☀️" && outfit == "😎") ||
+              (self.meteoDiOggi == "☁️" && outfit == "🧥") ||
+              (self.meteoDiOggi == "🌧️" && outfit == "☂️")
+            ) {
+              self.punteggio += 1;
+              alert("Hai indovinato l'outfit!");
+            } else {
+              alert("Hai sbagliato outfit!");
+            }
+            self.giorno += 1;
+            self.nuovoMeteo();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
