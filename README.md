@@ -2,8 +2,8 @@
 
 ### Consegna:
 
-Clona il repository al commit "esercizio studenti" e completa il codice sorgente fornito per creare un'applicazione Vue.js che simula la scelta dell'outfit giusto in base alle condizioni meteorologiche giornaliere.
-N.B. Non è necessario modificare funzioni già implementate. Ti basta seguire i TODO all'interno del codice, se rimani bloccato puoi consultare la soluzione al commit successivo o in questo README.
+Clona il repository e completa il codice sorgente dentro il file da_completare fornito per creare un'applicazione Vue.js che simula la scelta dell'outfit giusto in base alle condizioni meteorologiche giornaliere.
+N.B. Non è necessario modificare funzioni già implementate. Ti basta seguire i TODO all'interno del codice, se rimani bloccato puoi consultare la soluzione nwl file index.html o in questo README.
 
 ### Obiettivo:
 
