@@ -46,7 +46,7 @@
           giorno: 1,
           condizioniMetereologiche: ["☀️", "🌧️", "☁️"],
           meteoDiOggi: "",
-          lunghezzaMese: 3,
+          lunghezzaMese: 7,
           finitoMese: false,
         },
         mounted: function () {
@@ -70,51 +70,35 @@
             }
           },
 
-          // TODO: COMPLETARE LE FUNZIONI MAGLIONCINO E OMBRELLO AIUTANDOSI CON LA FUNZIONE OCCHIALI
-
           occhiali: function () {
             var self = this;
             self.controllaOutfit("😎");
           },
 
-          // Quando si andrà a fare click sul bottone con il maglioncino si entrerà in questa funzione
           maglioncino: function () {
-            /**
-             *
-             * Qui dentro ci sarà il codice che andrà a controllare se l'outfit
-             * è corretto o meno, facendo una chiamata alla funzione
-             * controllaOutfit() e passandogli come parametro il maglioncino
-             *
-             */
+            var self = this;
+            self.controllaOutfit("🧥");
           },
 
-          // Quando si andrà a fare click sul bottone con l'ombrello si entrerà in questa funzione
           ombrello: function () {
-            /**
-             *
-             * Come per il maglioncino, qui dentro ci sarà il codice che andrà a controllare se l'outfit
-             * è corretto o meno, facendo una chiamata alla funzione
-             * controllaOutfit() e passandogli come parametro l'ombrello
-             *
-             */
+            var self = this;
+            self.controllaOutfit("☂️");
           },
 
-          // TODO: COMPLETARE LA FUNZIONE controllaOutfit() LEGGENDO IL COMMENTO SOTTOSTANTE
-
-          /**
-           * Questa funzione andrà a controllare se l'outfit è corretto o meno in base al meteo attuale
-           * e al tipo di outfit che è stato scelto (parametro outfit)
-           */
           controllaOutfit: function (outfit) {
-            /**
-             *
-             * Completare la funzione controllaOutfit() in modo che:
-             * - Se l'outfit è corretto, allora si aggiungerà un punto al punteggio
-             * - Se l'outfit è sbagliato, allora non vengono aggiunti punti al punteggio
-             * - Si aggiorna il giorno corrente incrementandolo di 1
-             * - Alla fine si chiamera la funzione nuovoMeteo() per andare a generare un nuovo meteo
-             *
-             */
+            var self = this;
+            if (
+              (self.meteoDiOggi == "☀️" && outfit == "😎") ||
+              (self.meteoDiOggi == "☁️" && outfit == "🧥") ||
+              (self.meteoDiOggi == "🌧️" && outfit == "☂️")
+            ) {
+              self.punteggio += 1;
+              alert("Hai indovinato l'outfit!");
+            } else {
+              alert("Hai sbagliato outfit!");
+            }
+            self.giorno += 1;
+            self.nuovoMeteo();
           },
         },
       });
